@@ -17,4 +17,10 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Capa_Entidad\Capa_Entidad.csproj" />
+    <ProjectReference Include="..\Capa_Logica\Capa_Logica.csproj" />
+    <ProjectReference Include="..\Capa_de_datos\Capa_de_datos.csproj" />
+  </ItemGroup>
 </Project>

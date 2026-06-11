@@ -1,9 +1,18 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Capa_Presentacion_Avalonia.MainWindow"
-        Title="Capa_Presentacion_Avalonia">
-    Welcome to Avalonia!
+        Title="Parrillaguille - Sistema de Ventas"
+        Width="400" Height="300"
+        WindowStartupLocation="CenterScreen">
+
+  <StackPanel Margin="40" Spacing="15">
+    <TextBlock Text="Parrillaguille" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+    <TextBlock Text="Sistema de Ventas" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+    <Button x:Name="btnSalon" Content="🍽 Atención en Salón" HorizontalAlignment="Stretch" Height="40"/>
+    <Button x:Name="btnDelivery" Content="🛵 Delivery" HorizontalAlignment="Stretch" Height="40"/>
+    <Button x:Name="btnVentas" Content="📋 Ver Ventas" HorizontalAlignment="Stretch" Height="40"/>
+    <Button x:Name="btnMenu" Content="📝 Gestionar Menú" HorizontalAlignment="Stretch" Height="40"/>
+  </StackPanel>
+
 </Window>
