@@ -1,0 +1,210 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\Parrillaguille\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\deliverymesas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\deliverymesas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|c:\\users\\user\\source\\repos\\parrillaguille\\capa_presentacion\\salonprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\salonprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\pedio2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\pedio2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|c:\\users\\user\\source\\repos\\parrillaguille\\capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|c:\\users\\user\\source\\repos\\parrillaguille\\capa_presentacion\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{596C1531-94B2-8E7D-D425-F9ED213B9821}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\pedio2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\pedio2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|C:\\Users\\User\\source\\repos\\Parrillaguille\\capa_presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{416171B1-1D08-4485-AC20-70358E6E4C04}|Capa_Presentacion\\Capa_Presentacion.csproj|solutionrelative:capa_presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Pedio2.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Pedio2.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Pedio2.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Pedio2.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Pedio2.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:18:47.709Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "vENTA.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\vENTA.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\vENTA.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\vENTA.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\vENTA.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T02:11:27.993Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SalonPrincipal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\SalonPrincipal.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\SalonPrincipal.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\SalonPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\SalonPrincipal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T02:19:29.294Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DEliverymesas.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\DEliverymesas.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\DEliverymesas.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\DEliverymesas.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\DEliverymesas.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:43:05.298Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Delivery.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Delivery.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Delivery.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Delivery.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Delivery.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:32:38.082Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Menu.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Menu.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Menu.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:18:39.612Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Form1.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Form1.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:18:30.334Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Menu.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs",
+              "RelativeToolTip": "Capa_Presentacion\\Menu.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowCIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T00:15:13.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Delivery.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Delivery.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Delivery.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Delivery.cs",
+              "RelativeToolTip": "Capa_Presentacion\\Delivery.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAQwH4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:34:56.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Pedio2.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Pedio2.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Pedio2.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Pedio2.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Pedio2.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T01:05:47.823Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Menu.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Menu.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Menu.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Menu.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T00:07:20.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Form1.cs",
+              "RelativeDocumentMoniker": "Capa_Presentacion\\Form1.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Parrillaguille\\Capa_Presentacion\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Capa_Presentacion\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:04:43.962Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

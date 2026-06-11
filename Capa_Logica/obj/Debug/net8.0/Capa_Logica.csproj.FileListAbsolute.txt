@@ -1,0 +1,17 @@
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_Logica.deps.json
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_Logica.dll
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_Logica.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_de_datos.dll
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_Entidad.dll
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_de_datos.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/bin/Debug/net8.0/Capa_Entidad.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.csproj.AssemblyReference.cache
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.GeneratedMSBuildEditorConfig.editorconfig
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.AssemblyInfoInputs.cache
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.AssemblyInfo.cs
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.csproj.CoreCompileInputs.cache
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Log.4C98AF80.Up2Date
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.dll
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/refint/Capa_Logica.dll
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/Capa_Logica.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_Logica/obj/Debug/net8.0/ref/Capa_Logica.dll

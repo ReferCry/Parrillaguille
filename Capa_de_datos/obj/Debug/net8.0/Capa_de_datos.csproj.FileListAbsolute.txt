@@ -1,0 +1,15 @@
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/bin/Debug/net8.0/Capa_de_datos.deps.json
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/bin/Debug/net8.0/Capa_de_datos.dll
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/bin/Debug/net8.0/Capa_de_datos.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/bin/Debug/net8.0/Capa_Entidad.dll
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/bin/Debug/net8.0/Capa_Entidad.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.csproj.AssemblyReference.cache
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.GeneratedMSBuildEditorConfig.editorconfig
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.AssemblyInfoInputs.cache
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.AssemblyInfo.cs
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.csproj.CoreCompileInputs.cache
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_.BAAD58D9.Up2Date
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.dll
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/refint/Capa_de_datos.dll
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/Capa_de_datos.pdb
+/home/referkry/proyectos/Parrillaguille/Capa_de_datos/obj/Debug/net8.0/ref/Capa_de_datos.dll
