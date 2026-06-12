@@ -18,6 +18,8 @@ namespace Capa_Logica
 
         public Producto? ObtenerPorNombre(string nombre) => _repo.ObtenerPorNombre(nombre);
 
+        public Producto? ObtenerPorId(int id) => _repo.ObtenerPorId(id);
+
         public void AgregarProducto(Producto producto)
         {
             if (string.IsNullOrWhiteSpace(producto.Nombre))

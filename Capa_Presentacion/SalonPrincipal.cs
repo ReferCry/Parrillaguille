@@ -21,9 +21,34 @@ namespace Capa_Presentacion
             var conexion = new ConexionSQL();
             _mesaService = new MesaService(conexion);
 
-            this.Text = tipoAtencion == "Delivery"
-                ? "Seleccionar Mesa - Delivery"
-                : "Salón Principal - Seleccione una Mesa";
+            if (tipoAtencion == "Delivery")
+            {
+                this.Text = "Delivery - Seleccionar Pedido";
+                button1.Text = "Pedido 1";
+                button2.Text = "Pedido 2";
+                button15.Text = "Pedido 3";
+                button14.Text = "Pedido 4";
+                button13.Text = "Pedido 5";
+                button8.Text = "Pedido 6";
+                button9.Text = "Pedido 7";
+                button10.Text = "Pedido 8";
+                button11.Text = "Pedido 9";
+                button12.Text = "Pedido 10";
+                button7.Text = "Pedido 11";
+                button6.Text = "Pedido 12";
+                button3.Text = "Pedido 13";
+                button5.Text = "Pedido 14";
+                button4.Text = "Pedido 15";
+                button20.Text = "Pedido 16";
+                button19.Text = "Pedido 17";
+                button18.Text = "Pedido 18";
+                button17.Text = "Pedido 19";
+                button16.Text = "Pedido 20";
+            }
+            else
+            {
+                this.Text = "Salón Principal - Seleccione una Mesa";
+            }
         }
 
         private void AbrirPedidoMesa(int numeroMesa)

@@ -59,7 +59,6 @@
             label1 = new Label();
             groupBox1 = new GroupBox();
             button4 = new Button();
-            button2 = new Button();
             button3 = new Button();
             button1 = new Button();
             button5 = new Button();
@@ -327,7 +326,6 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(button4);
-            groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(button1);
             groupBox1.Location = new Point(651, 23);
@@ -347,15 +345,6 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(6, 168);
-            button2.Name = "button2";
-            button2.Size = new Size(130, 51);
-            button2.TabIndex = 2;
-            button2.Text = "Imprimir";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             button3.Location = new Point(6, 99);
@@ -364,6 +353,7 @@
             button3.TabIndex = 3;
             button3.Text = "Eliminar Plato";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button1
             // 
@@ -373,6 +363,7 @@
             button1.TabIndex = 1;
             button1.Text = "Agregar Pedido";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button5
             // 
@@ -448,7 +439,6 @@
         private Label label1;
         private GroupBox groupBox1;
         private Button button4;
-        private Button button2;
         private Button button3;
         private Button button1;
         private Button button5;

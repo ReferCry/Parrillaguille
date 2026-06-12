@@ -59,6 +59,7 @@
             button1.TabIndex = 1;
             button1.Text = "Agregar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -68,6 +69,7 @@
             button2.TabIndex = 2;
             button2.Text = "Eliminar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -77,6 +79,7 @@
             button3.TabIndex = 3;
             button3.Text = "Modificar ";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label1
             // 

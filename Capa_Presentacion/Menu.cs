@@ -1,12 +1,20 @@
 using Capa_Entidad;
+using Capa_de_datos;
+using Capa_Logica;
 
 namespace Capa_Presentacion
 {
     public partial class Menu : Form
     {
+        private readonly ProductoService _productoService;
+
         public Menu()
         {
             InitializeComponent();
+
+            var conexion = new ConexionSQL();
+            _productoService = new ProductoService(conexion);
+
             CargarCategorias();
         }
 
@@ -29,12 +37,25 @@ namespace Capa_Presentacion
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
 
+            dataGridView1.Columns.Add("Id", "ID");
             dataGridView1.Columns.Add("Producto", "Producto");
             dataGridView1.Columns.Add("Precio", "Precio (S/)");
+            dataGridView1.Columns["Id"].Visible = false;
 
-            foreach (var producto in MenuData.ObtenerPlatos(categoria))
+            try
             {
-                dataGridView1.Rows.Add(producto, "---");
+                var productos = _productoService.ObtenerPorCategoria(categoria);
+                foreach (var producto in productos)
+                {
+                    dataGridView1.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio.ToString("N2"));
+                }
+            }
+            catch
+            {
+                foreach (var producto in MenuData.ObtenerPlatos(categoria))
+                {
+                    dataGridView1.Rows.Add(0, producto, "---");
+                }
             }
         }
 
@@ -71,9 +92,7 @@ namespace Capa_Presentacion
 
             try
             {
-                var conexion = new Capa_de_datos.ConexionSQL();
-                var service = new Capa_Logica.ProductoService(conexion);
-                service.AgregarProducto(new Producto
+                _productoService.AgregarProducto(new Producto
                 {
                     Nombre = nombre,
                     Categoria = categoria,
@@ -100,22 +119,16 @@ namespace Capa_Presentacion
             }
 
             string nombre = dataGridView1.CurrentRow.Cells["Producto"].Value?.ToString() ?? "";
+            int idProducto = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
 
             var result = MessageBox.Show($"¿Eliminar '{nombre}'?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes) return;
 
             try
             {
-                var conexion = new Capa_de_datos.ConexionSQL();
-                var service = new Capa_Logica.ProductoService(conexion);
-                var producto = service.ObtenerPorNombre(nombre);
-
-                if (producto != null)
-                {
-                    service.EliminarProducto(producto.IdProducto);
-                    MessageBox.Show("Producto eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    comboBox1_SelectedIndexChanged(sender, e);
-                }
+                _productoService.EliminarProducto(idProducto);
+                MessageBox.Show("Producto eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                comboBox1_SelectedIndexChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -131,9 +144,16 @@ namespace Capa_Presentacion
                 return;
             }
 
-            string nombre = dataGridView1.CurrentRow.Cells["Producto"].Value?.ToString() ?? "";
+            int idProducto = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
+            string nombre = textBox1.Text.Trim();
             string precioTexto = textBox2.Text.Trim();
             string categoria = cboCategoria.SelectedItem?.ToString() ?? "";
+
+            if (string.IsNullOrEmpty(nombre))
+            {
+                MessageBox.Show("Ingrese el nombre del producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (!decimal.TryParse(precioTexto, out decimal precio) || precio <= 0)
             {
@@ -143,17 +163,16 @@ namespace Capa_Presentacion
 
             try
             {
-                var conexion = new Capa_de_datos.ConexionSQL();
-                var service = new Capa_Logica.ProductoService(conexion);
-                var producto = service.ObtenerPorNombre(nombre);
+                var producto = _productoService.ObtenerPorId(idProducto);
 
                 if (producto != null)
                 {
+                    producto.Nombre = nombre;
                     producto.Precio = precio;
                     if (!string.IsNullOrEmpty(categoria))
                         producto.Categoria = categoria;
 
-                    service.ModificarProducto(producto);
+                    _productoService.ModificarProducto(producto);
                     MessageBox.Show("Producto modificado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     comboBox1_SelectedIndexChanged(sender, e);
                 }

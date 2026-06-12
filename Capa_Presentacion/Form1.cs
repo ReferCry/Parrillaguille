@@ -24,30 +24,9 @@ namespace Capa_Presentacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var conexion = new Capa_de_datos.ConexionSQL();
-                var service = new Capa_Logica.VentaService(conexion);
-                var ventas = service.ObtenerTodas();
-
-                if (ventas.Count == 0)
-                {
-                    MessageBox.Show("No hay ventas registradas.", "Detalles de Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                string mensaje = "=== Ventas Registradas ===\n\n";
-                foreach (var v in ventas.Take(20))
-                {
-                    mensaje += $"#{v.IdVenta} | {v.Fecha:dd/MM/yyyy HH:mm} | {v.NombreCliente} {v.ApellidoCliente} | S/{v.MontoTotal:N2} | {v.TipoComprobante} | {v.MetodoPago}\n";
-                }
-
-                MessageBox.Show(mensaje, "Detalles de Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al consultar ventas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            var dashboard = new Dashboard();
+            dashboard.Show();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
