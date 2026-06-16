@@ -2,15 +2,8 @@
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,92 +15,61 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnAlmacen = new Button();
+            btnCerrarSesion = new Button();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.TopCenter;
-            button1.Location = new Point(129, 57);
-            button1.Name = "button1";
-            button1.Size = new Size(251, 74);
-            button1.TabIndex = 0;
-            button1.Text = "Salon Principal";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI", 12F);
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.TopCenter;
-            button2.Location = new Point(518, 57);
-            button2.Name = "button2";
-            button2.Size = new Size(247, 74);
-            button2.TabIndex = 1;
-            button2.Text = "Delivery";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleRight;
-            button3.Location = new Point(129, 245);
-            button3.Name = "button3";
-            button3.Size = new Size(251, 76);
-            button3.TabIndex = 2;
-            button3.Text = "Detalles de Venta ";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // button4
-            // 
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.ImageAlign = ContentAlignment.MiddleRight;
-            button4.Location = new Point(518, 245);
-            button4.Name = "button4";
-            button4.Size = new Size(247, 76);
-            button4.TabIndex = 3;
-            button4.Text = "Menu";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
+            //
+            // btnAlmacen
+            //
+            btnAlmacen.BackColor = Color.FromArgb(200, 150, 50);
+            btnAlmacen.FlatStyle = FlatStyle.Flat;
+            btnAlmacen.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnAlmacen.ForeColor = Color.White;
+            btnAlmacen.Location = new Point(318, 175);
+            btnAlmacen.Name = "btnAlmacen";
+            btnAlmacen.Size = new Size(250, 80);
+            btnAlmacen.TabIndex = 0;
+            btnAlmacen.Text = "ALMACÉN";
+            btnAlmacen.UseVisualStyleBackColor = false;
+            btnAlmacen.Click += btnAlmacen_Click;
+            //
+            // btnCerrarSesion
+            //
+            btnCerrarSesion.BackColor = Color.Transparent;
+            btnCerrarSesion.BackgroundImage = (Image)resources.GetObject("button4.Image");
+            btnCerrarSesion.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            btnCerrarSesion.Location = new Point(810, 10);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(60, 60);
+            btnCerrarSesion.TabIndex = 1;
+            btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            //
             // Form1
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(885, 450);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnCerrarSesion);
+            Controls.Add(btnAlmacen);
             DoubleBuffered = true;
             Name = "Form1";
             Text = "Parrillaguille - Sistema de Ventas";
+            FormClosing += Form1_FormClosing;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnAlmacen;
+        private Button btnCerrarSesion;
     }
 }

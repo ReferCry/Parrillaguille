@@ -8,32 +8,16 @@ namespace Capa_Presentacion
             this.Text = "Parrillaguille - Sistema de Ventas";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAlmacen_Click(object sender, EventArgs e)
         {
-            SalonPrincipal frm = new SalonPrincipal("Salon");
-            frm.Show();
+            var almacen = new Almacen();
+            almacen.Show();
             this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            SalonPrincipal frm = new SalonPrincipal("Delivery");
-            frm.Show();
-            this.Hide();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Menu frm = new Menu();
-            frm.Show();
-            this.Hide();
+            Application.Exit();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
