@@ -9,6 +9,7 @@ namespace Capa_Presentacion
         private readonly ConexionSQL _conexion;
         private readonly MovimientoAlmacenService _service;
         private readonly CategoriaAlmacenService _categoriaService;
+        private readonly ProductoAlmacenService _productoService;
         private readonly MedidaProductoService _medidaService;
         private readonly string _tipoMovimiento;
         private decimal _precioUnitario;
@@ -19,6 +20,7 @@ namespace Capa_Presentacion
             _conexion = conexion;
             _service = new MovimientoAlmacenService(_conexion);
             _categoriaService = new CategoriaAlmacenService(_conexion);
+            _productoService = new ProductoAlmacenService(_conexion);
             _medidaService = new MedidaProductoService(_conexion);
             _tipoMovimiento = tipoMovimiento;
 
