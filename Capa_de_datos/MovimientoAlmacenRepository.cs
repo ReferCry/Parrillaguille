@@ -22,8 +22,8 @@ namespace Capa_de_datos
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
                          m.CantidadUnidades,
                          CASE WHEN m.TipoMovimiento = 'Entrada'
-                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
-                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                              THEN -(med.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (med.PrecioUnitario * m.CantidadUnidades)
                          END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
@@ -62,8 +62,8 @@ namespace Capa_de_datos
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
                          m.CantidadUnidades,
                          CASE WHEN m.TipoMovimiento = 'Entrada'
-                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
-                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                              THEN -(med.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (med.PrecioUnitario * m.CantidadUnidades)
                          END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
@@ -140,8 +140,8 @@ namespace Capa_de_datos
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
                          m.CantidadUnidades,
                          CASE WHEN m.TipoMovimiento = 'Entrada'
-                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
-                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                              THEN -(med.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (med.PrecioUnitario * m.CantidadUnidades)
                          END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m

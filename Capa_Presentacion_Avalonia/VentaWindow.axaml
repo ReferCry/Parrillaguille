@@ -1,0 +1,92 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Capa_Presentacion_Avalonia.VentaWindow"
+        Title="Registrar Venta" Width="520" Height="560"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF8E1">
+
+  <DockPanel>
+    <!-- Header -->
+    <Border DockPanel.Dock="Top" Background="#FB8C00" Padding="16,10,16,10">
+      <DockPanel>
+        <Button x:Name="btnAtras" DockPanel.Dock="Left" Classes="nav-btn"
+                Content="← Atrás" Background="#E65100"/>
+        <TextBlock Text="💰 Registrar Venta"
+                   FontSize="20" FontWeight="Bold" Foreground="White"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </DockPanel>
+    </Border>
+
+    <!-- Formulario de datos del cliente -->
+    <Border Margin="20,20,20,0" Background="White" CornerRadius="12" Padding="24,20"
+            BorderBrush="#E0E0E0" BorderThickness="1">
+      <StackPanel Spacing="14">
+        <TextBlock Text="Datos del Cliente" FontSize="16" FontWeight="Bold" Foreground="#424242"/>
+        <Separator Background="#E0E0E0"/>
+
+        <!-- Tipo de comprobante -->
+        <StackPanel Orientation="Horizontal" Spacing="16">
+          <RadioButton x:Name="rbFactura" Content="Factura" FontSize="13" IsChecked="True"/>
+          <RadioButton x:Name="rbBoleta" Content="Boleta" FontSize="13"/>
+        </StackPanel>
+
+        <!-- RUC -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="RUC" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtRUC" FontSize="13" PlaceholderText="11 dígitos" MaxLength="11"/>
+        </StackPanel>
+
+        <!-- Nombres -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Nombres" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtNombres" FontSize="13" PlaceholderText="Nombres del cliente"/>
+        </StackPanel>
+
+        <!-- Apellidos -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Apellidos" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtApellidos" FontSize="13" PlaceholderText="Apellidos del cliente"/>
+        </StackPanel>
+
+        <!-- DNI -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="DNI" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtDNI" FontSize="13" PlaceholderText="8 dígitos" MaxLength="8"/>
+        </StackPanel>
+
+        <!-- Mesa / Delivery -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Mesa / Atención" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtMesa" FontSize="13" IsReadOnly="True" Background="#F5F5F5"/>
+        </StackPanel>
+
+        <!-- Monto Total -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Monto Total" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <TextBox x:Name="txtMontoTotal" FontSize="16" FontWeight="Bold" IsReadOnly="True"
+                   Background="#F5F5F5" Foreground="#1565C0"/>
+        </StackPanel>
+
+        <!-- Método de pago -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Método de Pago" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <ComboBox x:Name="cboMetodoPago" FontSize="13"/>
+        </StackPanel>
+
+        <!-- Fecha -->
+        <StackPanel Spacing="4">
+          <TextBlock Text="Fecha" FontSize="12" FontWeight="SemiBold" Foreground="#616161"/>
+          <DatePicker x:Name="dpFecha" FontSize="13"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+
+    <!-- Botón Registrar Venta -->
+    <StackPanel DockPanel.Dock="Bottom" Margin="20,16,20,20" HorizontalAlignment="Stretch">
+      <Button x:Name="btnRegistrar" Content="✓ Registrar Venta" Classes="action-btn"
+              Height="48"
+              Background="#43A047" Foreground="White" FontSize="16" FontWeight="Bold"/>
+    </StackPanel>
+  </DockPanel>
+
+</Window>

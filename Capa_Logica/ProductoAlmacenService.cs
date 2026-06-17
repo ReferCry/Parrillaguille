@@ -26,8 +26,6 @@ namespace Capa_Logica
                 throw new ArgumentException("Debe seleccionar una categoría.");
             if (producto.Cantidad < 0)
                 throw new ArgumentException("La cantidad no puede ser negativa.");
-            if (producto.PrecioUnitario < 0)
-                throw new ArgumentException("El precio unitario no puede ser negativo.");
             producto.FechaUltimaActualizacion = DateTime.Now;
             _repo.Insertar(producto);
         }
@@ -42,8 +40,6 @@ namespace Capa_Logica
                 throw new ArgumentException("Debe seleccionar una categoría.");
             if (producto.Cantidad < 0)
                 throw new ArgumentException("La cantidad no puede ser negativa.");
-            if (producto.PrecioUnitario < 0)
-                throw new ArgumentException("El precio unitario no puede ser negativo.");
 
             producto.FechaUltimaActualizacion = DateTime.Now;
             _repo.Actualizar(producto);

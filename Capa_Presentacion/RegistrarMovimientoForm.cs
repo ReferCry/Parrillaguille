@@ -9,7 +9,6 @@ namespace Capa_Presentacion
         private readonly ConexionSQL _conexion;
         private readonly MovimientoAlmacenService _service;
         private readonly CategoriaAlmacenService _categoriaService;
-        private readonly ProductoAlmacenService _productoService;
         private readonly MedidaProductoService _medidaService;
         private readonly string _tipoMovimiento;
         private decimal _precioUnitario;
@@ -20,7 +19,6 @@ namespace Capa_Presentacion
             _conexion = conexion;
             _service = new MovimientoAlmacenService(_conexion);
             _categoriaService = new CategoriaAlmacenService(_conexion);
-            _productoService = new ProductoAlmacenService(_conexion);
             _medidaService = new MedidaProductoService(_conexion);
             _tipoMovimiento = tipoMovimiento;
 
@@ -55,22 +53,36 @@ namespace Capa_Presentacion
         {
             if (cmbProducto.SelectedValue == null) return;
             if (cmbProducto.SelectedValue is not int idProducto) return;
-            var producto = _productoService.ObtenerPorId(idProducto);
-            _precioUnitario = producto?.PrecioUnitario ?? 0;
             var medidas = _medidaService.ObtenerPorProducto(idProducto);
             cmbMedida.DataSource = medidas;
             cmbMedida.DisplayMember = "Nombre";
             cmbMedida.ValueMember = "IdMedida";
-            CalcularTotal();
+            cmbMedida_SelectedIndexChanged(cmbMedida, EventArgs.Empty);
         }
 
         private void cmbMedida_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbMedida.SelectedValue is int idMedida && cmbMedida.DataSource is List<MedidaProducto> medidas)
+            {
+                var medida = medidas.FirstOrDefault(m => m.IdMedida == idMedida);
+                if (medida != null)
+                {
+                    _precioUnitario = medida.PrecioUnitario;
+                    txtPrecio.Text = medida.PrecioUnitario.ToString("N2");
+                }
+            }
             CalcularTotal();
         }
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
+            CalcularTotal();
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtPrecio.Text, out decimal precio) && precio >= 0)
+                _precioUnitario = precio;
             CalcularTotal();
         }
 

@@ -24,6 +24,8 @@ namespace Capa_Presentacion
             cmbProducto = new ComboBox();
             lblMedida = new Label();
             cmbMedida = new ComboBox();
+            lblPrecio = new Label();
+            txtPrecio = new TextBox();
             lblCantidad = new Label();
             txtCantidad = new TextBox();
             lblTotal = new Label();
@@ -101,11 +103,30 @@ namespace Capa_Presentacion
             cmbMedida.TabIndex = 6;
             cmbMedida.SelectedIndexChanged += cmbMedida_SelectedIndexChanged;
             //
+            // lblPrecio
+            //
+            lblPrecio.AutoSize = true;
+            lblPrecio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblPrecio.Location = new Point(30, 175);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(46, 15);
+            lblPrecio.TabIndex = 5;
+            lblPrecio.Text = "Precio:";
+            //
+            // txtPrecio
+            //
+            txtPrecio.Location = new Point(120, 172);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(120, 23);
+            txtPrecio.TabIndex = 6;
+            txtPrecio.PlaceholderText = "Se autocompleta";
+            txtPrecio.TextChanged += txtPrecio_TextChanged;
+            //
             // lblCantidad
             //
             lblCantidad.AutoSize = true;
             lblCantidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblCantidad.Location = new Point(30, 175);
+            lblCantidad.Location = new Point(30, 215);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(62, 15);
             lblCantidad.TabIndex = 7;
@@ -113,7 +134,7 @@ namespace Capa_Presentacion
             //
             // txtCantidad
             //
-            txtCantidad.Location = new Point(120, 172);
+            txtCantidad.Location = new Point(120, 212);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(120, 23);
             txtCantidad.TabIndex = 8;
@@ -124,7 +145,7 @@ namespace Capa_Presentacion
             //
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTotal.Location = new Point(30, 215);
+            lblTotal.Location = new Point(30, 255);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(46, 20);
             lblTotal.TabIndex = 9;
@@ -134,7 +155,7 @@ namespace Capa_Presentacion
             //
             lblTotalValor.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblTotalValor.ForeColor = Color.FromArgb(0, 100, 0);
-            lblTotalValor.Location = new Point(90, 215);
+            lblTotalValor.Location = new Point(90, 255);
             lblTotalValor.Name = "lblTotalValor";
             lblTotalValor.Size = new Size(200, 20);
             lblTotalValor.TabIndex = 10;
@@ -144,7 +165,7 @@ namespace Capa_Presentacion
             //
             lblObservacion.AutoSize = true;
             lblObservacion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblObservacion.Location = new Point(30, 255);
+            lblObservacion.Location = new Point(30, 295);
             lblObservacion.Name = "lblObservacion";
             lblObservacion.Size = new Size(81, 15);
             lblObservacion.TabIndex = 11;
@@ -152,7 +173,7 @@ namespace Capa_Presentacion
             //
             // txtObservacion
             //
-            txtObservacion.Location = new Point(120, 252);
+            txtObservacion.Location = new Point(120, 292);
             txtObservacion.Name = "txtObservacion";
             txtObservacion.Size = new Size(300, 23);
             txtObservacion.TabIndex = 12;
@@ -163,7 +184,7 @@ namespace Capa_Presentacion
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRegistrar.ForeColor = Color.White;
-            btnRegistrar.Location = new Point(80, 295);
+            btnRegistrar.Location = new Point(80, 335);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(150, 35);
             btnRegistrar.TabIndex = 13;
@@ -177,7 +198,7 @@ namespace Capa_Presentacion
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(250, 295);
+            btnCancelar.Location = new Point(250, 335);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(130, 35);
             btnCancelar.TabIndex = 14;
@@ -189,7 +210,7 @@ namespace Capa_Presentacion
             //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(450, 345);
+            ClientSize = new Size(450, 385);
             Controls.Add(lblTipo);
             Controls.Add(lblCategoria);
             Controls.Add(cmbCategoria);
@@ -197,6 +218,8 @@ namespace Capa_Presentacion
             Controls.Add(cmbProducto);
             Controls.Add(lblMedida);
             Controls.Add(cmbMedida);
+            Controls.Add(lblPrecio);
+            Controls.Add(txtPrecio);
             Controls.Add(lblCantidad);
             Controls.Add(txtCantidad);
             Controls.Add(lblTotal);
@@ -224,6 +247,8 @@ namespace Capa_Presentacion
         private ComboBox cmbProducto;
         private Label lblMedida;
         private ComboBox cmbMedida;
+        private Label lblPrecio;
+        private TextBox txtPrecio;
         private Label lblCantidad;
         private TextBox txtCantidad;
         private Label lblTotal;

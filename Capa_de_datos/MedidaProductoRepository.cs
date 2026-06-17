@@ -18,7 +18,7 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"SELECT IdMedida, IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase
+                @"SELECT IdMedida, IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase, PrecioUnitario
                   FROM MedidasProducto
                   WHERE IdProductoAlmacen = @IdProducto
                   ORDER BY ValorNumerico DESC", conn);
@@ -32,7 +32,8 @@ namespace Capa_de_datos
                     IdProductoAlmacen = reader.GetInt32(1),
                     Nombre = reader.GetString(2),
                     ValorNumerico = reader.GetDecimal(3),
-                    UnidadBase = reader.GetString(4)
+                    UnidadBase = reader.GetString(4),
+                    PrecioUnitario = reader.GetDecimal(5)
                 });
             }
             return medidas;
@@ -43,7 +44,7 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"SELECT IdMedida, IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase
+                @"SELECT IdMedida, IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase, PrecioUnitario
                   FROM MedidasProducto
                   WHERE IdMedida = @Id", conn);
             cmd.Parameters.AddWithValue("@Id", id);
@@ -56,7 +57,8 @@ namespace Capa_de_datos
                     IdProductoAlmacen = reader.GetInt32(1),
                     Nombre = reader.GetString(2),
                     ValorNumerico = reader.GetDecimal(3),
-                    UnidadBase = reader.GetString(4)
+                    UnidadBase = reader.GetString(4),
+                    PrecioUnitario = reader.GetDecimal(5)
                 };
             }
             return null;
@@ -67,12 +69,13 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase)
-                  VALUES (@IdProducto, @Nombre, @ValorNumerico, @UnidadBase)", conn);
+                @"INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase, PrecioUnitario)
+                  VALUES (@IdProducto, @Nombre, @ValorNumerico, @UnidadBase, @PrecioUnitario)", conn);
             cmd.Parameters.AddWithValue("@IdProducto", medida.IdProductoAlmacen);
             cmd.Parameters.AddWithValue("@Nombre", medida.Nombre);
             cmd.Parameters.AddWithValue("@ValorNumerico", medida.ValorNumerico);
             cmd.Parameters.AddWithValue("@UnidadBase", medida.UnidadBase);
+            cmd.Parameters.AddWithValue("@PrecioUnitario", medida.PrecioUnitario);
             cmd.ExecuteNonQuery();
         }
 
@@ -102,12 +105,13 @@ namespace Capa_de_datos
             conn.Open();
             using var cmd = new SqlCommand(
                 @"UPDATE MedidasProducto
-                  SET Nombre = @Nombre, ValorNumerico = @ValorNumerico, UnidadBase = @UnidadBase
+                  SET Nombre = @Nombre, ValorNumerico = @ValorNumerico, UnidadBase = @UnidadBase, PrecioUnitario = @PrecioUnitario
                   WHERE IdMedida = @Id", conn);
             cmd.Parameters.AddWithValue("@Id", medida.IdMedida);
             cmd.Parameters.AddWithValue("@Nombre", medida.Nombre);
             cmd.Parameters.AddWithValue("@ValorNumerico", medida.ValorNumerico);
             cmd.Parameters.AddWithValue("@UnidadBase", medida.UnidadBase);
+            cmd.Parameters.AddWithValue("@PrecioUnitario", medida.PrecioUnitario);
             cmd.ExecuteNonQuery();
         }
 

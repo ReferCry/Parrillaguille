@@ -26,6 +26,8 @@ namespace Capa_Logica
                 throw new ArgumentException("El valor numérico debe ser mayor a 0.");
             if (string.IsNullOrWhiteSpace(medida.UnidadBase))
                 throw new ArgumentException("La unidad base es obligatoria.");
+            if (medida.PrecioUnitario < 0)
+                throw new ArgumentException("El precio unitario no puede ser negativo.");
 
             _repo.Insertar(medida);
         }

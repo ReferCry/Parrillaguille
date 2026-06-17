@@ -7,5 +7,6 @@ namespace Capa_Entidad
         public string Nombre { get; set; } = string.Empty;
         public decimal ValorNumerico { get; set; }
         public string UnidadBase { get; set; } = string.Empty;
+        public decimal PrecioUnitario { get; set; }
     }
 }

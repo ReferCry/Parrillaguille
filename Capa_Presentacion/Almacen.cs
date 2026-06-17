@@ -50,7 +50,6 @@ namespace Capa_Presentacion
                 p.Nombre,
                 Categoria = p.NombreCategoria,
                 Stock = p.Cantidad,
-                Precio = p.PrecioUnitario,
                 StockMínimo = p.StockMinimo,
                 ÚltimaActualización = p.FechaUltimaActualizacion.ToString("dd/MM/yyyy HH:mm")
             }).ToList();

@@ -56,7 +56,6 @@ namespace Capa_Presentacion
             txtNombre.Text = _productoEditar!.Nombre;
             cmbCategoria.SelectedValue = _productoEditar.IdCategoriaAlmacen;
             txtCantidad.Text = _productoEditar.Cantidad.ToString();
-            txtPrecio.Text = _productoEditar.PrecioUnitario.ToString();
             txtStockMinimo.Text = _productoEditar.StockMinimo.ToString();
         }
 
@@ -69,7 +68,7 @@ namespace Capa_Presentacion
             foreach (var m in medidas)
             {
                 _medidasNuevas.Add(m);
-                lstMedidas.Items.Add($"{m.Nombre} ({m.ValorNumerico} {m.UnidadBase})");
+                lstMedidas.Items.Add($"{m.Nombre} ({m.ValorNumerico} {m.UnidadBase}) - S/. {m.PrecioUnitario:N2}");
             }
         }
 
@@ -85,19 +84,26 @@ namespace Capa_Presentacion
                 MessageBox.Show("Ingrese un valor numérico válido mayor a 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if (!decimal.TryParse(txtMedidaPrecio.Text, out decimal precio) || precio < 0)
+            {
+                MessageBox.Show("Ingrese un precio válido (>= 0).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             var medida = new MedidaProducto
             {
                 Nombre = txtMedidaNombre.Text.Trim(),
                 ValorNumerico = valor,
-                UnidadBase = cmbMedidaUnidadBase.Text
+                UnidadBase = cmbMedidaUnidadBase.Text,
+                PrecioUnitario = precio
             };
 
             _medidasNuevas.Add(medida);
-            lstMedidas.Items.Add($"{medida.Nombre} ({medida.ValorNumerico} {medida.UnidadBase})");
+            lstMedidas.Items.Add($"{medida.Nombre} ({medida.ValorNumerico} {medida.UnidadBase}) - S/. {medida.PrecioUnitario:N2}");
 
             txtMedidaNombre.Text = "";
             txtMedidaValor.Text = "";
+            txtMedidaPrecio.Text = "";
         }
 
         private void btnQuitarMedida_Click(object sender, EventArgs e)
@@ -121,7 +127,6 @@ namespace Capa_Presentacion
                     Nombre = txtNombre.Text.Trim(),
                     IdCategoriaAlmacen = (int)cmbCategoria.SelectedValue!,
                     Cantidad = decimal.TryParse(txtCantidad.Text, out decimal cant) ? cant : 0,
-                    PrecioUnitario = decimal.TryParse(txtPrecio.Text, out decimal precio) ? precio : 0,
                     StockMinimo = decimal.TryParse(txtStockMinimo.Text, out decimal min) ? min : 0
                 };
 
