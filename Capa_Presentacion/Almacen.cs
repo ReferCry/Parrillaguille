@@ -81,7 +81,9 @@ namespace Capa_Presentacion
                 Medida = m.NombreMedida,
                 Tipo = m.TipoMovimiento,
                 Unidades = m.CantidadUnidades,
-                Total = m.CantidadUnidades,
+                Total = m.Total < 0
+                    ? $"- S/. {Math.Abs(m.Total):N2}"
+                    : $"S/. {m.Total:N2}",
                 Hora = m.Fecha.ToString("HH:mm"),
                 m.Observacion
             }).ToList();

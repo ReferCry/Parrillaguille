@@ -20,7 +20,11 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, m.CantidadUnidades,
+                         m.CantidadUnidades,
+                         CASE WHEN m.TipoMovimiento = 'Entrada'
+                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                         END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
@@ -40,7 +44,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetInt32(7),
+                    Total = reader.GetDecimal(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
@@ -56,7 +60,11 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, m.CantidadUnidades,
+                         m.CantidadUnidades,
+                         CASE WHEN m.TipoMovimiento = 'Entrada'
+                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                         END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
@@ -77,7 +85,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetInt32(7),
+                    Total = reader.GetDecimal(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
@@ -130,7 +138,11 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, m.CantidadUnidades,
+                         m.CantidadUnidades,
+                         CASE WHEN m.TipoMovimiento = 'Entrada'
+                              THEN -(p.PrecioUnitario * m.CantidadUnidades)
+                              ELSE (p.PrecioUnitario * m.CantidadUnidades)
+                         END,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
@@ -148,7 +160,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetInt32(7),
+                    Total = reader.GetDecimal(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });

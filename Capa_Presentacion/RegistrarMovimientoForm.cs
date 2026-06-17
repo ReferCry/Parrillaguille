@@ -12,6 +12,7 @@ namespace Capa_Presentacion
         private readonly ProductoAlmacenService _productoService;
         private readonly MedidaProductoService _medidaService;
         private readonly string _tipoMovimiento;
+        private decimal _precioUnitario;
 
         public RegistrarMovimientoForm(ConexionSQL conexion, string tipoMovimiento)
         {
@@ -54,6 +55,8 @@ namespace Capa_Presentacion
         {
             if (cmbProducto.SelectedValue == null) return;
             if (cmbProducto.SelectedValue is not int idProducto) return;
+            var producto = _productoService.ObtenerPorId(idProducto);
+            _precioUnitario = producto?.PrecioUnitario ?? 0;
             var medidas = _medidaService.ObtenerPorProducto(idProducto);
             cmbMedida.DataSource = medidas;
             cmbMedida.DisplayMember = "Nombre";
@@ -73,10 +76,13 @@ namespace Capa_Presentacion
 
         private void CalcularTotal()
         {
-            if (cmbMedida.SelectedItem is MedidaProducto medida &&
-                int.TryParse(txtCantidad.Text, out int cantidad) && cantidad > 0)
+            if (int.TryParse(txtCantidad.Text, out int cantidad) && cantidad > 0 && _precioUnitario > 0)
             {
-                lblTotalValor.Text = $"{cantidad} unidades";
+                decimal total = _precioUnitario * cantidad;
+                if (_tipoMovimiento == "Entrada")
+                    lblTotalValor.Text = $"- S/. {total:N2}";
+                else
+                    lblTotalValor.Text = $"S/. {total:N2}";
             }
             else
             {
