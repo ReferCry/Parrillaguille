@@ -39,11 +39,33 @@ namespace Capa_Logica
 
         public void ReemplazarMedidas(int idProducto, List<MedidaProducto> nuevasMedidas)
         {
-            _repo.EliminarPorProducto(idProducto);
+            var viejas = _repo.ObtenerPorProducto(idProducto);
+            var idsConMovimientos = _repo.ObtenerIdsConMovimientos(idProducto);
+
+            var idsNuevos = nuevasMedidas
+                .Where(m => m.IdMedida > 0)
+                .Select(m => m.IdMedida)
+                .ToHashSet();
+
+            var idsAEliminar = viejas
+                .Where(v => !idsNuevos.Contains(v.IdMedida) && !idsConMovimientos.Contains(v.IdMedida))
+                .Select(v => v.IdMedida)
+                .ToList();
+
+            if (idsAEliminar.Count > 0)
+                _repo.EliminarPorIds(idsAEliminar);
+
             foreach (var medida in nuevasMedidas)
             {
                 medida.IdProductoAlmacen = idProducto;
-                _repo.Insertar(medida);
+                if (medida.IdMedida > 0)
+                {
+                    _repo.Actualizar(medida);
+                }
+                else
+                {
+                    _repo.Insertar(medida);
+                }
             }
         }
     }
