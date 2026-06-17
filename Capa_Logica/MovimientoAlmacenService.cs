@@ -7,11 +7,13 @@ namespace Capa_Logica
     {
         private readonly MovimientoAlmacenRepository _movimientoRepo;
         private readonly ProductoAlmacenRepository _productoRepo;
+        private readonly MedidaProductoRepository _medidaRepo;
 
         public MovimientoAlmacenService(ConexionSQL conexion)
         {
             _movimientoRepo = new MovimientoAlmacenRepository(conexion);
             _productoRepo = new ProductoAlmacenRepository(conexion);
+            _medidaRepo = new MedidaProductoRepository(conexion);
         }
 
         public List<MovimientoAlmacen> ObtenerPorFecha(DateTime fecha) => _movimientoRepo.ObtenerPorFecha(fecha);
@@ -24,7 +26,9 @@ namespace Capa_Logica
         {
             if (movimiento.IdProductoAlmacen <= 0)
                 throw new ArgumentException("Debe seleccionar un producto.");
-            if (movimiento.Cantidad <= 0)
+            if (movimiento.IdMedida <= 0)
+                throw new ArgumentException("Debe seleccionar una medida.");
+            if (movimiento.CantidadUnidades <= 0)
                 throw new ArgumentException("La cantidad debe ser mayor a 0.");
             if (movimiento.TipoMovimiento != "Entrada" && movimiento.TipoMovimiento != "Salida")
                 throw new ArgumentException("Tipo de movimiento inválido. Use: Entrada o Salida.");
@@ -33,12 +37,18 @@ namespace Capa_Logica
             if (producto == null)
                 throw new ArgumentException("El producto seleccionado no existe.");
 
-            if (movimiento.TipoMovimiento == "Salida" && producto.Cantidad < movimiento.Cantidad)
+            var medida = _medidaRepo.ObtenerPorId(movimiento.IdMedida);
+            if (medida == null)
+                throw new ArgumentException("La medida seleccionada no existe.");
+
+            decimal totalCambio = medida.ValorNumerico * movimiento.CantidadUnidades;
+
+            if (movimiento.TipoMovimiento == "Salida" && producto.Cantidad < totalCambio)
                 throw new InvalidOperationException(
-                    $"Stock insuficiente. Disponible: {producto.Cantidad} {producto.UnidadMedida}, solicitado: {movimiento.Cantidad}.");
+                    $"Stock insuficiente. Disponible: {producto.Cantidad} {producto.UnidadBase}, solicitado: {totalCambio} {producto.UnidadBase}.");
 
             movimiento.Fecha = DateTime.Now;
-            _movimientoRepo.Insertar(movimiento);
+            _movimientoRepo.Insertar(movimiento, medida.ValorNumerico);
         }
     }
 }

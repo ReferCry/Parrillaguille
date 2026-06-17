@@ -18,12 +18,12 @@ namespace Capa_Presentacion
             _categoriaService = new CategoriaAlmacenService(_conexion);
             _movimientoService = new MovimientoAlmacenService(_conexion);
 
-            CargarCargarCategorias();
+            CargarCategorias();
             CargarProductos();
             dateTimePickerFecha.Value = DateTime.Today;
         }
 
-        private void CargarCargarCategorias()
+        private void CargarCategorias()
         {
             var categorias = _categoriaService.ObtenerTodas();
             categorias.Insert(0, new Capa_Entidad.CategoriaAlmacen { IdCategoriaAlmacen = 0, Nombre = "Todas" });
@@ -49,10 +49,9 @@ namespace Capa_Presentacion
                 p.IdProductoAlmacen,
                 p.Nombre,
                 Categoria = p.NombreCategoria,
-                p.Cantidad,
-                Unidad = p.UnidadMedida,
+                Stock = $"{p.Cantidad} {p.UnidadBase}",
                 Precio = p.PrecioUnitario,
-                StockMínimo = p.StockMinimo,
+                StockMínimo = $"{p.StockMinimo} {p.UnidadBase}",
                 ÚltimaActualización = p.FechaUltimaActualizacion.ToString("dd/MM/yyyy HH:mm")
             }).ToList();
 
@@ -60,9 +59,11 @@ namespace Capa_Presentacion
 
             foreach (DataGridViewRow row in dgvProductos.Rows)
             {
-                decimal cantidad = Convert.ToDecimal(row.Cells["Cantidad"].Value);
-                decimal stockMinimo = Convert.ToDecimal(row.Cells["StockMínimo"].Value);
-                if (cantidad <= stockMinimo)
+                string stockStr = row.Cells["Stock"].Value?.ToString() ?? "0";
+                string minStr = row.Cells["StockMínimo"].Value?.ToString() ?? "0";
+                decimal stock = decimal.TryParse(stockStr.Split(' ')[0], out decimal s) ? s : 0;
+                decimal min = decimal.TryParse(minStr.Split(' ')[0], out decimal m) ? m : 0;
+                if (stock <= min)
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(255, 200, 200);
                     row.DefaultCellStyle.ForeColor = Color.DarkRed;
@@ -79,8 +80,10 @@ namespace Capa_Presentacion
             {
                 m.IdMovimiento,
                 Producto = m.NombreProducto,
+                Medida = m.NombreMedida,
                 Tipo = m.TipoMovimiento,
-                m.Cantidad,
+                Unidades = m.CantidadUnidades,
+                Total = $"{m.Total} {(m.NombreMedida.Contains("litro") ? "litros" : m.NombreMedida.Contains("Kg") ? "kg" : "unidades")}",
                 Hora = m.Fecha.ToString("HH:mm"),
                 m.Observacion
             }).ToList();

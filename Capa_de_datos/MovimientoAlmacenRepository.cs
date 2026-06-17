@@ -18,10 +18,13 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre, m.TipoMovimiento,
-                         m.Cantidad, m.Fecha, m.Observacion
+                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
+                         m.IdMedida, med.Nombre, m.TipoMovimiento,
+                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
+                  INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
                   WHERE CAST(m.Fecha AS DATE) = @Fecha
                   ORDER BY m.Fecha DESC", conn);
             cmd.Parameters.AddWithValue("@Fecha", fecha.Date);
@@ -33,10 +36,13 @@ namespace Capa_de_datos
                     IdMovimiento = reader.GetInt32(0),
                     IdProductoAlmacen = reader.GetInt32(1),
                     NombreProducto = reader.GetString(2),
-                    TipoMovimiento = reader.GetString(3),
-                    Cantidad = reader.GetDecimal(4),
-                    Fecha = reader.GetDateTime(5),
-                    Observacion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6)
+                    IdMedida = reader.GetInt32(3),
+                    NombreMedida = reader.GetString(4),
+                    TipoMovimiento = reader.GetString(5),
+                    CantidadUnidades = reader.GetInt32(6),
+                    Total = reader.GetDecimal(7),
+                    Fecha = reader.GetDateTime(8),
+                    Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
             }
             return movimientos;
@@ -48,10 +54,13 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre, m.TipoMovimiento,
-                         m.Cantidad, m.Fecha, m.Observacion
+                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
+                         m.IdMedida, med.Nombre, m.TipoMovimiento,
+                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
+                  INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
                   WHERE CAST(m.Fecha AS DATE) BETWEEN @Desde AND @Hasta
                   ORDER BY m.Fecha DESC", conn);
             cmd.Parameters.AddWithValue("@Desde", desde.Date);
@@ -64,16 +73,19 @@ namespace Capa_de_datos
                     IdMovimiento = reader.GetInt32(0),
                     IdProductoAlmacen = reader.GetInt32(1),
                     NombreProducto = reader.GetString(2),
-                    TipoMovimiento = reader.GetString(3),
-                    Cantidad = reader.GetDecimal(4),
-                    Fecha = reader.GetDateTime(5),
-                    Observacion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6)
+                    IdMedida = reader.GetInt32(3),
+                    NombreMedida = reader.GetString(4),
+                    TipoMovimiento = reader.GetString(5),
+                    CantidadUnidades = reader.GetInt32(6),
+                    Total = reader.GetDecimal(7),
+                    Fecha = reader.GetDateTime(8),
+                    Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
             }
             return movimientos;
         }
 
-        public void Insertar(MovimientoAlmacen movimiento)
+        public void Insertar(MovimientoAlmacen movimiento, decimal valorMedida)
         {
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
@@ -81,22 +93,24 @@ namespace Capa_de_datos
             try
             {
                 using var cmdMov = new SqlCommand(
-                    @"INSERT INTO MovimientosAlmacen (IdProductoAlmacen, TipoMovimiento, Cantidad, Fecha, Observacion)
-                      VALUES (@IdProducto, @TipoMovimiento, @Cantidad, @Fecha, @Observacion)", conn, transaction);
+                    @"INSERT INTO MovimientosAlmacen (IdProductoAlmacen, IdMedida, TipoMovimiento, CantidadUnidades, Fecha, Observacion)
+                      VALUES (@IdProducto, @IdMedida, @TipoMovimiento, @CantidadUnidades, @Fecha, @Observacion)", conn, transaction);
                 cmdMov.Parameters.AddWithValue("@IdProducto", movimiento.IdProductoAlmacen);
+                cmdMov.Parameters.AddWithValue("@IdMedida", movimiento.IdMedida);
                 cmdMov.Parameters.AddWithValue("@TipoMovimiento", movimiento.TipoMovimiento);
-                cmdMov.Parameters.AddWithValue("@Cantidad", movimiento.Cantidad);
+                cmdMov.Parameters.AddWithValue("@CantidadUnidades", movimiento.CantidadUnidades);
                 cmdMov.Parameters.AddWithValue("@Fecha", movimiento.Fecha);
                 cmdMov.Parameters.AddWithValue("@Observacion", (object?)movimiento.Observacion ?? DBNull.Value);
                 cmdMov.ExecuteNonQuery();
 
+                decimal totalCambio = valorMedida * movimiento.CantidadUnidades;
                 string operacion = movimiento.TipoMovimiento == "Entrada" ? "+" : "-";
                 using var cmdStock = new SqlCommand(
                     $@"UPDATE ProductosAlmacen
-                       SET Cantidad = Cantidad {operacion} @Cantidad,
+                       SET Cantidad = Cantidad {operacion} @TotalCambio,
                            FechaUltimaActualizacion = GETDATE()
                        WHERE IdProductoAlmacen = @IdProducto", conn, transaction);
-                cmdStock.Parameters.AddWithValue("@Cantidad", movimiento.Cantidad);
+                cmdStock.Parameters.AddWithValue("@TotalCambio", totalCambio);
                 cmdStock.Parameters.AddWithValue("@IdProducto", movimiento.IdProductoAlmacen);
                 cmdStock.ExecuteNonQuery();
 
@@ -115,10 +129,13 @@ namespace Capa_de_datos
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
             using var cmd = new SqlCommand(
-                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre, m.TipoMovimiento,
-                         m.Cantidad, m.Fecha, m.Observacion
+                @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
+                         m.IdMedida, med.Nombre, m.TipoMovimiento,
+                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
+                  INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
                   ORDER BY m.Fecha DESC", conn);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -128,10 +145,13 @@ namespace Capa_de_datos
                     IdMovimiento = reader.GetInt32(0),
                     IdProductoAlmacen = reader.GetInt32(1),
                     NombreProducto = reader.GetString(2),
-                    TipoMovimiento = reader.GetString(3),
-                    Cantidad = reader.GetDecimal(4),
-                    Fecha = reader.GetDateTime(5),
-                    Observacion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6)
+                    IdMedida = reader.GetInt32(3),
+                    NombreMedida = reader.GetString(4),
+                    TipoMovimiento = reader.GetString(5),
+                    CantidadUnidades = reader.GetInt32(6),
+                    Total = reader.GetDecimal(7),
+                    Fecha = reader.GetDateTime(8),
+                    Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
             }
             return movimientos;

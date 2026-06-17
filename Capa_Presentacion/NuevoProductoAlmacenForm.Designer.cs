@@ -23,21 +23,30 @@ namespace Capa_Presentacion
             cmbCategoria = new ComboBox();
             lblCantidad = new Label();
             txtCantidad = new TextBox();
-            lblUnidadMedida = new Label();
-            cmbUnidadMedida = new ComboBox();
+            lblUnidadBase = new Label();
+            cmbUnidadBase = new ComboBox();
             lblPrecio = new Label();
             txtPrecio = new TextBox();
             lblStockMinimo = new Label();
             txtStockMinimo = new TextBox();
+            grpMedidas = new GroupBox();
+            lstMedidas = new ListBox();
+            lblMedidaNombre = new Label();
+            txtMedidaNombre = new TextBox();
+            lblMedidaValor = new Label();
+            txtMedidaValor = new TextBox();
+            btnAgregarMedida = new Button();
+            btnQuitarMedida = new Button();
             btnGuardar = new Button();
             btnCancelar = new Button();
+            grpMedidas.SuspendLayout();
             SuspendLayout();
             //
             // lblNombre
             //
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombre.Location = new Point(30, 25);
+            lblNombre.Location = new Point(20, 20);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(58, 15);
             lblNombre.TabIndex = 0;
@@ -45,16 +54,16 @@ namespace Capa_Presentacion
             //
             // txtNombre
             //
-            txtNombre.Location = new Point(120, 22);
+            txtNombre.Location = new Point(110, 17);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(300, 23);
+            txtNombre.Size = new Size(320, 23);
             txtNombre.TabIndex = 1;
             //
             // lblCategoria
             //
             lblCategoria.AutoSize = true;
             lblCategoria.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblCategoria.Location = new Point(30, 65);
+            lblCategoria.Location = new Point(20, 55);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(75, 15);
             lblCategoria.TabIndex = 2;
@@ -63,16 +72,16 @@ namespace Capa_Presentacion
             // cmbCategoria
             //
             cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCategoria.Location = new Point(120, 62);
+            cmbCategoria.Location = new Point(110, 52);
             cmbCategoria.Name = "cmbCategoria";
-            cmbCategoria.Size = new Size(300, 23);
+            cmbCategoria.Size = new Size(320, 23);
             cmbCategoria.TabIndex = 3;
             //
             // lblCantidad
             //
             lblCantidad.AutoSize = true;
             lblCantidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblCantidad.Location = new Point(30, 105);
+            lblCantidad.Location = new Point(20, 90);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(62, 15);
             lblCantidad.TabIndex = 4;
@@ -80,34 +89,34 @@ namespace Capa_Presentacion
             //
             // txtCantidad
             //
-            txtCantidad.Location = new Point(120, 102);
+            txtCantidad.Location = new Point(110, 87);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(150, 23);
+            txtCantidad.Size = new Size(120, 23);
             txtCantidad.TabIndex = 5;
             //
-            // lblUnidadMedida
+            // lblUnidadBase
             //
-            lblUnidadMedida.AutoSize = true;
-            lblUnidadMedida.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblUnidadMedida.Location = new Point(30, 145);
-            lblUnidadMedida.Name = "lblUnidadMedida";
-            lblUnidadMedida.Size = new Size(96, 15);
-            lblUnidadMedida.TabIndex = 6;
-            lblUnidadMedida.Text = "Unidad Medida:";
+            lblUnidadBase.AutoSize = true;
+            lblUnidadBase.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblUnidadBase.Location = new Point(250, 90);
+            lblUnidadBase.Name = "lblUnidadBase";
+            lblUnidadBase.Size = new Size(82, 15);
+            lblUnidadBase.TabIndex = 6;
+            lblUnidadBase.Text = "Unidad Base:";
             //
-            // cmbUnidadMedida
+            // cmbUnidadBase
             //
-            cmbUnidadMedida.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbUnidadMedida.Location = new Point(140, 142);
-            cmbUnidadMedida.Name = "cmbUnidadMedida";
-            cmbUnidadMedida.Size = new Size(150, 23);
-            cmbUnidadMedida.TabIndex = 7;
+            cmbUnidadBase.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUnidadBase.Location = new Point(340, 87);
+            cmbUnidadBase.Name = "cmbUnidadBase";
+            cmbUnidadBase.Size = new Size(90, 23);
+            cmbUnidadBase.TabIndex = 7;
             //
             // lblPrecio
             //
             lblPrecio.AutoSize = true;
             lblPrecio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPrecio.Location = new Point(30, 185);
+            lblPrecio.Location = new Point(20, 125);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(92, 15);
             lblPrecio.TabIndex = 8;
@@ -115,16 +124,16 @@ namespace Capa_Presentacion
             //
             // txtPrecio
             //
-            txtPrecio.Location = new Point(140, 182);
+            txtPrecio.Location = new Point(130, 122);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(150, 23);
+            txtPrecio.Size = new Size(120, 23);
             txtPrecio.TabIndex = 9;
             //
             // lblStockMinimo
             //
             lblStockMinimo.AutoSize = true;
             lblStockMinimo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblStockMinimo.Location = new Point(30, 225);
+            lblStockMinimo.Location = new Point(270, 125);
             lblStockMinimo.Name = "lblStockMinimo";
             lblStockMinimo.Size = new Size(89, 15);
             lblStockMinimo.TabIndex = 10;
@@ -132,10 +141,103 @@ namespace Capa_Presentacion
             //
             // txtStockMinimo
             //
-            txtStockMinimo.Location = new Point(140, 222);
+            txtStockMinimo.Location = new Point(370, 122);
             txtStockMinimo.Name = "txtStockMinimo";
-            txtStockMinimo.Size = new Size(150, 23);
+            txtStockMinimo.Size = new Size(60, 23);
             txtStockMinimo.TabIndex = 11;
+            //
+            // grpMedidas
+            //
+            grpMedidas.Controls.Add(lstMedidas);
+            grpMedidas.Controls.Add(lblMedidaNombre);
+            grpMedidas.Controls.Add(txtMedidaNombre);
+            grpMedidas.Controls.Add(lblMedidaValor);
+            grpMedidas.Controls.Add(txtMedidaValor);
+            grpMedidas.Controls.Add(btnAgregarMedida);
+            grpMedidas.Controls.Add(btnQuitarMedida);
+            grpMedidas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            grpMedidas.Location = new Point(20, 160);
+            grpMedidas.Name = "grpMedidas";
+            grpMedidas.Size = new Size(410, 200);
+            grpMedidas.TabIndex = 12;
+            grpMedidas.TabStop = false;
+            grpMedidas.Text = "Medidas del Producto";
+            //
+            // lstMedidas
+            //
+            lstMedidas.Font = new Font("Segoe UI", 9F);
+            lstMedidas.FormattingEnabled = true;
+            lstMedidas.ItemHeight = 15;
+            lstMedidas.Location = new Point(10, 25);
+            lstMedidas.Name = "lstMedidas";
+            lstMedidas.Size = new Size(220, 124);
+            lstMedidas.TabIndex = 0;
+            //
+            // lblMedidaNombre
+            //
+            lblMedidaNombre.AutoSize = true;
+            lblMedidaNombre.Font = new Font("Segoe UI", 8F);
+            lblMedidaNombre.Location = new Point(245, 25);
+            lblMedidaNombre.Name = "lblMedidaNombre";
+            lblMedidaNombre.Size = new Size(47, 13);
+            lblMedidaNombre.TabIndex = 1;
+            lblMedidaNombre.Text = "Nombre:";
+            //
+            // txtMedidaNombre
+            //
+            txtMedidaNombre.Font = new Font("Segoe UI", 9F);
+            txtMedidaNombre.Location = new Point(245, 42);
+            txtMedidaNombre.Name = "txtMedidaNombre";
+            txtMedidaNombre.Size = new Size(150, 23);
+            txtMedidaNombre.TabIndex = 2;
+            txtMedidaNombre.PlaceholderText = "2 litros";
+            //
+            // lblMedidaValor
+            //
+            lblMedidaValor.AutoSize = true;
+            lblMedidaValor.Font = new Font("Segoe UI", 8F);
+            lblMedidaValor.Location = new Point(245, 72);
+            lblMedidaValor.Name = "lblMedidaValor";
+            lblMedidaValor.Size = new Size(34, 13);
+            lblMedidaValor.TabIndex = 3;
+            lblMedidaValor.Text = "Valor:";
+            //
+            // txtMedidaValor
+            //
+            txtMedidaValor.Font = new Font("Segoe UI", 9F);
+            txtMedidaValor.Location = new Point(285, 69);
+            txtMedidaValor.Name = "txtMedidaValor";
+            txtMedidaValor.Size = new Size(110, 23);
+            txtMedidaValor.TabIndex = 4;
+            txtMedidaValor.PlaceholderText = "2";
+            //
+            // btnAgregarMedida
+            //
+            btnAgregarMedida.BackColor = Color.FromArgb(46, 139, 87);
+            btnAgregarMedida.FlatStyle = FlatStyle.Flat;
+            btnAgregarMedida.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnAgregarMedida.ForeColor = Color.White;
+            btnAgregarMedida.Location = new Point(245, 100);
+            btnAgregarMedida.Name = "btnAgregarMedida";
+            btnAgregarMedida.Size = new Size(80, 30);
+            btnAgregarMedida.TabIndex = 5;
+            btnAgregarMedida.Text = "+ AGREGAR";
+            btnAgregarMedida.UseVisualStyleBackColor = false;
+            btnAgregarMedida.Click += btnAgregarMedida_Click;
+            //
+            // btnQuitarMedida
+            //
+            btnQuitarMedida.BackColor = Color.FromArgb(178, 34, 34);
+            btnQuitarMedida.FlatStyle = FlatStyle.Flat;
+            btnQuitarMedida.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnQuitarMedida.ForeColor = Color.White;
+            btnQuitarMedida.Location = new Point(335, 100);
+            btnQuitarMedida.Name = "btnQuitarMedida";
+            btnQuitarMedida.Size = new Size(60, 30);
+            btnQuitarMedida.TabIndex = 6;
+            btnQuitarMedida.Text = "QUITAR";
+            btnQuitarMedida.UseVisualStyleBackColor = false;
+            btnQuitarMedida.Click += btnQuitarMedida_Click;
             //
             // btnGuardar
             //
@@ -143,10 +245,10 @@ namespace Capa_Presentacion
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(120, 270);
+            btnGuardar.Location = new Point(110, 375);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(120, 35);
-            btnGuardar.TabIndex = 12;
+            btnGuardar.TabIndex = 13;
             btnGuardar.Text = "GUARDAR";
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
@@ -157,10 +259,10 @@ namespace Capa_Presentacion
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(260, 270);
+            btnCancelar.Location = new Point(250, 375);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(120, 35);
-            btnCancelar.TabIndex = 13;
+            btnCancelar.TabIndex = 14;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
@@ -169,19 +271,20 @@ namespace Capa_Presentacion
             //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(450, 320);
+            ClientSize = new Size(450, 425);
             Controls.Add(lblNombre);
             Controls.Add(txtNombre);
             Controls.Add(lblCategoria);
             Controls.Add(cmbCategoria);
             Controls.Add(lblCantidad);
             Controls.Add(txtCantidad);
-            Controls.Add(lblUnidadMedida);
-            Controls.Add(cmbUnidadMedida);
+            Controls.Add(lblUnidadBase);
+            Controls.Add(cmbUnidadBase);
             Controls.Add(lblPrecio);
             Controls.Add(txtPrecio);
             Controls.Add(lblStockMinimo);
             Controls.Add(txtStockMinimo);
+            Controls.Add(grpMedidas);
             Controls.Add(btnGuardar);
             Controls.Add(btnCancelar);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -190,6 +293,8 @@ namespace Capa_Presentacion
             Name = "NuevoProductoAlmacenForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Nuevo Producto - Almacén";
+            grpMedidas.ResumeLayout(false);
+            grpMedidas.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,12 +307,20 @@ namespace Capa_Presentacion
         private ComboBox cmbCategoria;
         private Label lblCantidad;
         private TextBox txtCantidad;
-        private Label lblUnidadMedida;
-        private ComboBox cmbUnidadMedida;
+        private Label lblUnidadBase;
+        private ComboBox cmbUnidadBase;
         private Label lblPrecio;
         private TextBox txtPrecio;
         private Label lblStockMinimo;
         private TextBox txtStockMinimo;
+        private GroupBox grpMedidas;
+        private ListBox lstMedidas;
+        private Label lblMedidaNombre;
+        private TextBox txtMedidaNombre;
+        private Label lblMedidaValor;
+        private TextBox txtMedidaValor;
+        private Button btnAgregarMedida;
+        private Button btnQuitarMedida;
         private Button btnGuardar;
         private Button btnCancelar;
     }

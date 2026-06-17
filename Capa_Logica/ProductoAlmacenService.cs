@@ -28,12 +28,8 @@ namespace Capa_Logica
                 throw new ArgumentException("La cantidad no puede ser negativa.");
             if (producto.PrecioUnitario < 0)
                 throw new ArgumentException("El precio unitario no puede ser negativo.");
-            if (string.IsNullOrWhiteSpace(producto.UnidadMedida))
-                throw new ArgumentException("La unidad de medida es obligatoria.");
-
-            var unidadesValidas = new[] { "kg", "g", "litros", "unidades" };
-            if (!unidadesValidas.Contains(producto.UnidadMedida.ToLower()))
-                throw new ArgumentException("Unidad de medida inválida. Use: kg, g, litros o unidades.");
+            if (string.IsNullOrWhiteSpace(producto.UnidadBase))
+                throw new ArgumentException("La unidad base es obligatoria.");
 
             producto.FechaUltimaActualizacion = DateTime.Now;
             _repo.Insertar(producto);
@@ -51,10 +47,6 @@ namespace Capa_Logica
                 throw new ArgumentException("La cantidad no puede ser negativa.");
             if (producto.PrecioUnitario < 0)
                 throw new ArgumentException("El precio unitario no puede ser negativo.");
-
-            var unidadesValidas = new[] { "kg", "g", "litros", "unidades" };
-            if (!unidadesValidas.Contains(producto.UnidadMedida.ToLower()))
-                throw new ArgumentException("Unidad de medida inválida. Use: kg, g, litros o unidades.");
 
             producto.FechaUltimaActualizacion = DateTime.Now;
             _repo.Actualizar(producto);
