@@ -91,7 +91,7 @@ namespace Capa_Presentacion
             //
             txtCantidad.Location = new Point(110, 87);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(320, 23);
+            txtCantidad.Size = new Size(120, 23);
             txtCantidad.TabIndex = 5;
             //
             // lblStockMinimo
