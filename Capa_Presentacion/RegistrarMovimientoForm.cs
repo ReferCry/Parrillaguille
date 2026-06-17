@@ -42,7 +42,7 @@ namespace Capa_Presentacion
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbCategoria.SelectedValue == null) return;
-            int idCategoria = (int)cmbCategoria.SelectedValue;
+            if (cmbCategoria.SelectedValue is not int idCategoria) return;
             var productos = _productoService.ObtenerPorCategoria(idCategoria);
             cmbProducto.DataSource = productos;
             cmbProducto.DisplayMember = "Nombre";
@@ -53,7 +53,7 @@ namespace Capa_Presentacion
         private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbProducto.SelectedValue == null) return;
-            int idProducto = (int)cmbProducto.SelectedValue;
+            if (cmbProducto.SelectedValue is not int idProducto) return;
             var medidas = _medidaService.ObtenerPorProducto(idProducto);
             cmbMedida.DataSource = medidas;
             cmbMedida.DisplayMember = "Nombre";
@@ -76,8 +76,7 @@ namespace Capa_Presentacion
             if (cmbMedida.SelectedItem is MedidaProducto medida &&
                 int.TryParse(txtCantidad.Text, out int cantidad) && cantidad > 0)
             {
-                decimal total = medida.ValorNumerico * cantidad;
-                lblTotalValor.Text = $"{total} {medida.UnidadBase}";
+                lblTotalValor.Text = $"{cantidad} unidades";
             }
             else
             {

@@ -49,9 +49,9 @@ namespace Capa_Presentacion
                 p.IdProductoAlmacen,
                 p.Nombre,
                 Categoria = p.NombreCategoria,
-                Stock = $"{p.Cantidad} {p.UnidadBase}",
+                Stock = p.Cantidad,
                 Precio = p.PrecioUnitario,
-                StockMínimo = $"{p.StockMinimo} {p.UnidadBase}",
+                StockMínimo = p.StockMinimo,
                 ÚltimaActualización = p.FechaUltimaActualizacion.ToString("dd/MM/yyyy HH:mm")
             }).ToList();
 
@@ -59,10 +59,8 @@ namespace Capa_Presentacion
 
             foreach (DataGridViewRow row in dgvProductos.Rows)
             {
-                string stockStr = row.Cells["Stock"].Value?.ToString() ?? "0";
-                string minStr = row.Cells["StockMínimo"].Value?.ToString() ?? "0";
-                decimal stock = decimal.TryParse(stockStr.Split(' ')[0], out decimal s) ? s : 0;
-                decimal min = decimal.TryParse(minStr.Split(' ')[0], out decimal m) ? m : 0;
+                decimal stock = Convert.ToDecimal(row.Cells["Stock"].Value);
+                decimal min = Convert.ToDecimal(row.Cells["StockMínimo"].Value);
                 if (stock <= min)
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(255, 200, 200);
@@ -83,12 +81,27 @@ namespace Capa_Presentacion
                 Medida = m.NombreMedida,
                 Tipo = m.TipoMovimiento,
                 Unidades = m.CantidadUnidades,
-                Total = $"{m.Total} {(m.NombreMedida.Contains("litro") ? "litros" : m.NombreMedida.Contains("Kg") ? "kg" : "unidades")}",
+                Total = m.CantidadUnidades,
                 Hora = m.Fecha.ToString("HH:mm"),
                 m.Observacion
             }).ToList();
 
             dgvMovimientos.Columns["IdMovimiento"].Visible = false;
+
+            foreach (DataGridViewRow row in dgvMovimientos.Rows)
+            {
+                string tipo = row.Cells["Tipo"].Value?.ToString() ?? "";
+                if (tipo == "Entrada")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(220, 255, 220);
+                    row.DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (tipo == "Salida")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 220, 220);
+                    row.DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

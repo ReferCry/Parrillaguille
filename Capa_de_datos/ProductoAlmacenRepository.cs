@@ -19,7 +19,7 @@ namespace Capa_de_datos
             conn.Open();
             using var cmd = new SqlCommand(
                 @"SELECT p.IdProductoAlmacen, p.Nombre, p.IdCategoriaAlmacen, c.Nombre,
-                         p.Cantidad, p.UnidadBase, p.PrecioUnitario, p.StockMinimo,
+                         p.Cantidad, p.PrecioUnitario, p.StockMinimo,
                          p.FechaUltimaActualizacion, p.Activo
                   FROM ProductosAlmacen p
                   INNER JOIN CategoriasAlmacen c ON p.IdCategoriaAlmacen = c.IdCategoriaAlmacen
@@ -35,11 +35,10 @@ namespace Capa_de_datos
                     IdCategoriaAlmacen = reader.GetInt32(2),
                     NombreCategoria = reader.GetString(3),
                     Cantidad = reader.GetDecimal(4),
-                    UnidadBase = reader.GetString(5),
-                    PrecioUnitario = reader.GetDecimal(6),
-                    StockMinimo = reader.GetDecimal(7),
-                    FechaUltimaActualizacion = reader.GetDateTime(8),
-                    Activo = reader.GetBoolean(9)
+                    PrecioUnitario = reader.GetDecimal(5),
+                    StockMinimo = reader.GetDecimal(6),
+                    FechaUltimaActualizacion = reader.GetDateTime(7),
+                    Activo = reader.GetBoolean(8)
                 });
             }
             return productos;
@@ -51,7 +50,7 @@ namespace Capa_de_datos
             conn.Open();
             using var cmd = new SqlCommand(
                 @"SELECT p.IdProductoAlmacen, p.Nombre, p.IdCategoriaAlmacen, c.Nombre,
-                         p.Cantidad, p.UnidadBase, p.PrecioUnitario, p.StockMinimo,
+                         p.Cantidad, p.PrecioUnitario, p.StockMinimo,
                          p.FechaUltimaActualizacion, p.Activo
                   FROM ProductosAlmacen p
                   INNER JOIN CategoriasAlmacen c ON p.IdCategoriaAlmacen = c.IdCategoriaAlmacen
@@ -67,11 +66,10 @@ namespace Capa_de_datos
                     IdCategoriaAlmacen = reader.GetInt32(2),
                     NombreCategoria = reader.GetString(3),
                     Cantidad = reader.GetDecimal(4),
-                    UnidadBase = reader.GetString(5),
-                    PrecioUnitario = reader.GetDecimal(6),
-                    StockMinimo = reader.GetDecimal(7),
-                    FechaUltimaActualizacion = reader.GetDateTime(8),
-                    Activo = reader.GetBoolean(9)
+                    PrecioUnitario = reader.GetDecimal(5),
+                    StockMinimo = reader.GetDecimal(6),
+                    FechaUltimaActualizacion = reader.GetDateTime(7),
+                    Activo = reader.GetBoolean(8)
                 };
             }
             return null;
@@ -84,7 +82,7 @@ namespace Capa_de_datos
             conn.Open();
             using var cmd = new SqlCommand(
                 @"SELECT p.IdProductoAlmacen, p.Nombre, p.IdCategoriaAlmacen, c.Nombre,
-                         p.Cantidad, p.UnidadBase, p.PrecioUnitario, p.StockMinimo,
+                         p.Cantidad, p.PrecioUnitario, p.StockMinimo,
                          p.FechaUltimaActualizacion, p.Activo
                   FROM ProductosAlmacen p
                   INNER JOIN CategoriasAlmacen c ON p.IdCategoriaAlmacen = c.IdCategoriaAlmacen
@@ -101,11 +99,10 @@ namespace Capa_de_datos
                     IdCategoriaAlmacen = reader.GetInt32(2),
                     NombreCategoria = reader.GetString(3),
                     Cantidad = reader.GetDecimal(4),
-                    UnidadBase = reader.GetString(5),
-                    PrecioUnitario = reader.GetDecimal(6),
-                    StockMinimo = reader.GetDecimal(7),
-                    FechaUltimaActualizacion = reader.GetDateTime(8),
-                    Activo = reader.GetBoolean(9)
+                    PrecioUnitario = reader.GetDecimal(5),
+                    StockMinimo = reader.GetDecimal(6),
+                    FechaUltimaActualizacion = reader.GetDateTime(7),
+                    Activo = reader.GetBoolean(8)
                 });
             }
             return productos;
@@ -117,13 +114,12 @@ namespace Capa_de_datos
             conn.Open();
             using var cmd = new SqlCommand(
                 @"INSERT INTO ProductosAlmacen
-                  (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo, FechaUltimaActualizacion, Activo)
+                  (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo, FechaUltimaActualizacion, Activo)
                   VALUES
-                  (@Nombre, @IdCategoriaAlmacen, @Cantidad, @UnidadBase, @PrecioUnitario, @StockMinimo, @FechaUltimaActualizacion, @Activo)", conn);
+                  (@Nombre, @IdCategoriaAlmacen, @Cantidad, @PrecioUnitario, @StockMinimo, @FechaUltimaActualizacion, @Activo)", conn);
             cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
             cmd.Parameters.AddWithValue("@IdCategoriaAlmacen", producto.IdCategoriaAlmacen);
             cmd.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-            cmd.Parameters.AddWithValue("@UnidadBase", producto.UnidadBase);
             cmd.Parameters.AddWithValue("@PrecioUnitario", producto.PrecioUnitario);
             cmd.Parameters.AddWithValue("@StockMinimo", producto.StockMinimo);
             cmd.Parameters.AddWithValue("@FechaUltimaActualizacion", producto.FechaUltimaActualizacion);
@@ -138,13 +134,12 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"UPDATE ProductosAlmacen SET
                   Nombre = @Nombre, IdCategoriaAlmacen = @IdCategoriaAlmacen, Cantidad = @Cantidad,
-                  UnidadBase = @UnidadBase, PrecioUnitario = @PrecioUnitario, StockMinimo = @StockMinimo,
+                  PrecioUnitario = @PrecioUnitario, StockMinimo = @StockMinimo,
                   FechaUltimaActualizacion = @FechaUltimaActualizacion
                   WHERE IdProductoAlmacen = @Id", conn);
             cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
             cmd.Parameters.AddWithValue("@IdCategoriaAlmacen", producto.IdCategoriaAlmacen);
             cmd.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-            cmd.Parameters.AddWithValue("@UnidadBase", producto.UnidadBase);
             cmd.Parameters.AddWithValue("@PrecioUnitario", producto.PrecioUnitario);
             cmd.Parameters.AddWithValue("@StockMinimo", producto.StockMinimo);
             cmd.Parameters.AddWithValue("@FechaUltimaActualizacion", producto.FechaUltimaActualizacion);

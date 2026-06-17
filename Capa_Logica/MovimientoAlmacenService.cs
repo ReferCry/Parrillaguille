@@ -41,14 +41,12 @@ namespace Capa_Logica
             if (medida == null)
                 throw new ArgumentException("La medida seleccionada no existe.");
 
-            decimal totalCambio = medida.ValorNumerico * movimiento.CantidadUnidades;
-
-            if (movimiento.TipoMovimiento == "Salida" && producto.Cantidad < totalCambio)
+            if (movimiento.TipoMovimiento == "Salida" && producto.Cantidad < movimiento.CantidadUnidades)
                 throw new InvalidOperationException(
-                    $"Stock insuficiente. Disponible: {producto.Cantidad} {producto.UnidadBase}, solicitado: {totalCambio} {producto.UnidadBase}.");
+                    $"Stock insuficiente. Disponible: {producto.Cantidad} unidades, solicitado: {movimiento.CantidadUnidades} unidades.");
 
             movimiento.Fecha = DateTime.Now;
-            _movimientoRepo.Insertar(movimiento, medida.ValorNumerico);
+            _movimientoRepo.Insertar(movimiento);
         }
     }
 }

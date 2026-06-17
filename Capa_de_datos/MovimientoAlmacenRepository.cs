@@ -20,13 +20,13 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.CantidadUnidades, m.CantidadUnidades,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
                   INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
                   WHERE CAST(m.Fecha AS DATE) = @Fecha
-                  ORDER BY m.Fecha DESC", conn);
+                  ORDER BY m.Fecha ASC", conn);
             cmd.Parameters.AddWithValue("@Fecha", fecha.Date);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -40,7 +40,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetDecimal(7),
+                    Total = reader.GetInt32(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
@@ -56,13 +56,13 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.CantidadUnidades, m.CantidadUnidades,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
                   INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
                   WHERE CAST(m.Fecha AS DATE) BETWEEN @Desde AND @Hasta
-                  ORDER BY m.Fecha DESC", conn);
+                  ORDER BY m.Fecha ASC", conn);
             cmd.Parameters.AddWithValue("@Desde", desde.Date);
             cmd.Parameters.AddWithValue("@Hasta", hasta.Date);
             using var reader = cmd.ExecuteReader();
@@ -77,7 +77,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetDecimal(7),
+                    Total = reader.GetInt32(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });
@@ -85,7 +85,7 @@ namespace Capa_de_datos
             return movimientos;
         }
 
-        public void Insertar(MovimientoAlmacen movimiento, decimal valorMedida)
+        public void Insertar(MovimientoAlmacen movimiento)
         {
             using var conn = _conexion.ObtenerConexion();
             conn.Open();
@@ -103,14 +103,13 @@ namespace Capa_de_datos
                 cmdMov.Parameters.AddWithValue("@Observacion", (object?)movimiento.Observacion ?? DBNull.Value);
                 cmdMov.ExecuteNonQuery();
 
-                decimal totalCambio = valorMedida * movimiento.CantidadUnidades;
                 string operacion = movimiento.TipoMovimiento == "Entrada" ? "+" : "-";
                 using var cmdStock = new SqlCommand(
                     $@"UPDATE ProductosAlmacen
-                       SET Cantidad = Cantidad {operacion} @TotalCambio,
+                       SET Cantidad = Cantidad {operacion} @CantidadUnidades,
                            FechaUltimaActualizacion = GETDATE()
                        WHERE IdProductoAlmacen = @IdProducto", conn, transaction);
-                cmdStock.Parameters.AddWithValue("@TotalCambio", totalCambio);
+                cmdStock.Parameters.AddWithValue("@CantidadUnidades", movimiento.CantidadUnidades);
                 cmdStock.Parameters.AddWithValue("@IdProducto", movimiento.IdProductoAlmacen);
                 cmdStock.ExecuteNonQuery();
 
@@ -131,12 +130,12 @@ namespace Capa_de_datos
             using var cmd = new SqlCommand(
                 @"SELECT m.IdMovimiento, m.IdProductoAlmacen, p.Nombre,
                          m.IdMedida, med.Nombre, m.TipoMovimiento,
-                         m.CantidadUnidades, med.ValorNumerico * m.CantidadUnidades,
+                         m.CantidadUnidades, m.CantidadUnidades,
                          m.Fecha, m.Observacion
                   FROM MovimientosAlmacen m
                   INNER JOIN ProductosAlmacen p ON m.IdProductoAlmacen = p.IdProductoAlmacen
                   INNER JOIN MedidasProducto med ON m.IdMedida = med.IdMedida
-                  ORDER BY m.Fecha DESC", conn);
+                  ORDER BY m.Fecha ASC", conn);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -149,7 +148,7 @@ namespace Capa_de_datos
                     NombreMedida = reader.GetString(4),
                     TipoMovimiento = reader.GetString(5),
                     CantidadUnidades = reader.GetInt32(6),
-                    Total = reader.GetDecimal(7),
+                    Total = reader.GetInt32(7),
                     Fecha = reader.GetDateTime(8),
                     Observacion = reader.IsDBNull(9) ? string.Empty : reader.GetString(9)
                 });

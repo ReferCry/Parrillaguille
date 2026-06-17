@@ -7,7 +7,6 @@ namespace Capa_Entidad
         public int IdCategoriaAlmacen { get; set; }
         public string NombreCategoria { get; set; } = string.Empty;
         public decimal Cantidad { get; set; }
-        public string UnidadBase { get; set; } = string.Empty;
         public decimal PrecioUnitario { get; set; }
         public decimal StockMinimo { get; set; }
         public DateTime FechaUltimaActualizacion { get; set; }

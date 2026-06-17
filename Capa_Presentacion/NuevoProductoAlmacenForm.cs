@@ -23,7 +23,7 @@ namespace Capa_Presentacion
             _productoEditar = producto;
 
             CargarCategorias();
-            CargarUnidadesBase();
+            CargarUnidadesMedida();
 
             if (_productoEditar != null)
             {
@@ -45,10 +45,10 @@ namespace Capa_Presentacion
             cmbCategoria.ValueMember = "IdCategoriaAlmacen";
         }
 
-        private void CargarUnidadesBase()
+        private void CargarUnidadesMedida()
         {
-            cmbUnidadBase.Items.AddRange(new object[] { "kg", "litros", "unidades" });
-            cmbUnidadBase.SelectedIndex = 0;
+            cmbMedidaUnidadBase.Items.AddRange(new object[] { "kg", "litros", "unidades" });
+            cmbMedidaUnidadBase.SelectedIndex = 0;
         }
 
         private void CargarDatos()
@@ -56,7 +56,6 @@ namespace Capa_Presentacion
             txtNombre.Text = _productoEditar!.Nombre;
             cmbCategoria.SelectedValue = _productoEditar.IdCategoriaAlmacen;
             txtCantidad.Text = _productoEditar.Cantidad.ToString();
-            cmbUnidadBase.Text = _productoEditar.UnidadBase;
             txtPrecio.Text = _productoEditar.PrecioUnitario.ToString();
             txtStockMinimo.Text = _productoEditar.StockMinimo.ToString();
         }
@@ -87,12 +86,11 @@ namespace Capa_Presentacion
                 return;
             }
 
-            var unidadBase = cmbUnidadBase.Text;
             var medida = new MedidaProducto
             {
                 Nombre = txtMedidaNombre.Text.Trim(),
                 ValorNumerico = valor,
-                UnidadBase = unidadBase
+                UnidadBase = cmbMedidaUnidadBase.Text
             };
 
             _medidasNuevas.Add(medida);
@@ -123,7 +121,6 @@ namespace Capa_Presentacion
                     Nombre = txtNombre.Text.Trim(),
                     IdCategoriaAlmacen = (int)cmbCategoria.SelectedValue!,
                     Cantidad = decimal.TryParse(txtCantidad.Text, out decimal cant) ? cant : 0,
-                    UnidadBase = cmbUnidadBase.Text,
                     PrecioUnitario = decimal.TryParse(txtPrecio.Text, out decimal precio) ? precio : 0,
                     StockMinimo = decimal.TryParse(txtStockMinimo.Text, out decimal min) ? min : 0
                 };

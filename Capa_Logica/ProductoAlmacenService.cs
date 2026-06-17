@@ -28,9 +28,6 @@ namespace Capa_Logica
                 throw new ArgumentException("La cantidad no puede ser negativa.");
             if (producto.PrecioUnitario < 0)
                 throw new ArgumentException("El precio unitario no puede ser negativo.");
-            if (string.IsNullOrWhiteSpace(producto.UnidadBase))
-                throw new ArgumentException("La unidad base es obligatoria.");
-
             producto.FechaUltimaActualizacion = DateTime.Now;
             _repo.Insertar(producto);
         }

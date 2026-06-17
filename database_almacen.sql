@@ -1,7 +1,14 @@
 -- ============================================
 -- Módulo Almacén - Parrillaguille
 -- Tablas: CategoriasAlmacen, ProductosAlmacen, MedidasProducto, MovimientosAlmacen
+-- Stock siempre en unidades (cantidad = número de unidades/items)
 -- ============================================
+
+-- Eliminar tablas en orden correcto (respetar FKs)
+IF OBJECT_ID('MovimientosAlmacen', 'U') IS NOT NULL DROP TABLE MovimientosAlmacen;
+IF OBJECT_ID('MedidasProducto', 'U') IS NOT NULL DROP TABLE MedidasProducto;
+IF OBJECT_ID('ProductosAlmacen', 'U') IS NOT NULL DROP TABLE ProductosAlmacen;
+IF OBJECT_ID('CategoriasAlmacen', 'U') IS NOT NULL DROP TABLE CategoriasAlmacen;
 
 -- Tabla de Categorías del Almacén
 CREATE TABLE CategoriasAlmacen (
@@ -10,13 +17,12 @@ CREATE TABLE CategoriasAlmacen (
     Descripcion VARCHAR(200) NULL
 );
 
--- Tabla de Productos del Almacén
+-- Tabla de Productos del Almacén (stock en unidades)
 CREATE TABLE ProductosAlmacen (
     IdProductoAlmacen INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(200) NOT NULL,
     IdCategoriaAlmacen INT NOT NULL,
     Cantidad DECIMAL(10,2) NOT NULL DEFAULT 0,
-    UnidadBase VARCHAR(20) NOT NULL,
     PrecioUnitario DECIMAL(10,2) NOT NULL DEFAULT 0,
     StockMinimo DECIMAL(10,2) NOT NULL DEFAULT 0,
     FechaUltimaActualizacion DATETIME NOT NULL DEFAULT GETDATE(),
@@ -24,7 +30,7 @@ CREATE TABLE ProductosAlmacen (
     FOREIGN KEY (IdCategoriaAlmacen) REFERENCES CategoriasAlmacen(IdCategoriaAlmacen)
 );
 
--- Tabla de Medidas por Producto (variantes de tamaño)
+-- Tabla de Medidas por Producto (variantes de tamaño, para referencia)
 CREATE TABLE MedidasProducto (
     IdMedida INT IDENTITY(1,1) PRIMARY KEY,
     IdProductoAlmacen INT NOT NULL,
@@ -48,7 +54,7 @@ CREATE TABLE MovimientosAlmacen (
 );
 
 -- ============================================
--- Seed: Categorías (6 nuevas)
+-- Seed: Categorías (6)
 -- ============================================
 INSERT INTO CategoriasAlmacen (Nombre, Descripcion) VALUES
     ('Pollos y Carnes', 'Pollo, res, cerdo, chorizo, etc.'),
@@ -59,24 +65,22 @@ INSERT INTO CategoriasAlmacen (Nombre, Descripcion) VALUES
     ('Desechables', 'Vasos, tapers, bolsas, servilletas, etc.');
 
 -- ============================================
--- Seed: Productos + Medidas
+-- Seed: Productos (stock = unidades, sin UnidadBase)
+-- Los nombres ya diferencian variantes (ej: Coca Cola 2L, Coca Cola 1L)
 -- ============================================
 
--- ==========================================
--- POLLOS Y CARNES (UnidadBase: kg)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Pollo entero', 1, 0, 'kg', 0, 2),
-    ('Pechuga de pollo', 1, 0, 'kg', 0, 2),
-    ('Pierna de pollo', 1, 0, 'kg', 0, 2),
-    ('Chuleta', 1, 0, 'kg', 0, 2),
-    ('Bife', 1, 0, 'kg', 0, 2),
-    ('Tira de cerdo', 1, 0, 'kg', 0, 2),
-    ('Chorizo', 1, 0, 'kg', 0, 2),
-    ('Costilla de res', 1, 0, 'kg', 0, 2),
-    ('Lomo de res', 1, 0, 'kg', 0, 2);
+-- POLLOS Y CARNES
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Pollo entero', 1, 0, 0, 2),
+    ('Pechuga de pollo', 1, 0, 0, 2),
+    ('Pierna de pollo', 1, 0, 0, 2),
+    ('Chuleta', 1, 0, 0, 2),
+    ('Bife', 1, 0, 0, 2),
+    ('Tira de cerdo', 1, 0, 0, 2),
+    ('Chorizo', 1, 0, 0, 2),
+    ('Costilla de res', 1, 0, 0, 2),
+    ('Lomo de res', 1, 0, 0, 2);
 
--- Medidas Pollos y Carnes
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (1, '1 Kg', 1, 'kg'), (1, '1/2 Kg', 0.5, 'kg'),
     (2, '1 Kg', 1, 'kg'), (2, '1/2 Kg', 0.5, 'kg'),
@@ -88,23 +92,20 @@ INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBas
     (8, '1 Kg', 1, 'kg'), (8, '1/2 Kg', 0.5, 'kg'),
     (9, '1 Kg', 1, 'kg'), (9, '1/2 Kg', 0.5, 'kg');
 
--- ==========================================
--- VERDURAS Y TUBÉRCULOS (UnidadBase: kg)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Papa blanca', 2, 0, 'kg', 0, 5),
-    ('Papa amarilla', 2, 0, 'kg', 0, 3),
-    ('Camote', 2, 0, 'kg', 0, 2),
-    ('Lechuga', 2, 0, 'kg', 0, 2),
-    ('Tomate', 2, 0, 'kg', 0, 3),
-    ('Cebolla', 2, 0, 'kg', 0, 3),
-    ('Pepino', 2, 0, 'kg', 0, 2),
-    ('Limón', 2, 0, 'kg', 0, 2),
-    ('Ajo', 2, 0, 'kg', 0, 1),
-    ('Ají amarillo', 2, 0, 'kg', 0, 1),
-    ('Culantro', 2, 0, 'kg', 0, 1);
+-- VERDURAS Y TUBÉRCULOS
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Papa blanca', 2, 0, 0, 5),
+    ('Papa amarilla', 2, 0, 0, 3),
+    ('Camote', 2, 0, 0, 2),
+    ('Lechuga', 2, 0, 0, 2),
+    ('Tomate', 2, 0, 0, 3),
+    ('Cebolla', 2, 0, 0, 3),
+    ('Pepino', 2, 0, 0, 2),
+    ('Limón', 2, 0, 0, 2),
+    ('Ajo', 2, 0, 0, 1),
+    ('Ají amarillo', 2, 0, 0, 1),
+    ('Culantro', 2, 0, 0, 1);
 
--- Medidas Verduras y Tubérculos
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (10, '1 Kg', 1, 'kg'), (10, '2 Kg', 2, 'kg'), (10, '5 Kg', 5, 'kg'),
     (11, '1 Kg', 1, 'kg'), (11, '2 Kg', 2, 'kg'),
@@ -118,19 +119,16 @@ INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBas
     (19, '1 Kg', 1, 'kg'), (19, '1/2 Kg', 0.5, 'kg'),
     (20, '1 Kg', 1, 'kg'), (20, '1/2 Kg', 0.5, 'kg');
 
--- ==========================================
--- BEBIDAS Y GASEOSAS (UnidadBase: litros)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Coca Cola 2L', 3, 0, 'litros', 0, 6),
-    ('Coca Cola 1L', 3, 0, 'litros', 0, 6),
-    ('Inca Kola 2L', 3, 0, 'litros', 0, 6),
-    ('Inca Kola 1L', 3, 0, 'litros', 0, 6),
-    ('Sprite', 3, 0, 'litros', 0, 6),
-    ('Pepsi', 3, 0, 'litros', 0, 6),
-    ('Agua mineral', 3, 0, 'litros', 0, 12);
+-- BEBIDAS Y GASEOSAS
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Coca Cola 2L', 3, 0, 0, 6),
+    ('Coca Cola 1L', 3, 0, 0, 6),
+    ('Inca Kola 2L', 3, 0, 0, 6),
+    ('Inca Kola 1L', 3, 0, 0, 6),
+    ('Sprite', 3, 0, 0, 6),
+    ('Pepsi', 3, 0, 0, 6),
+    ('Agua mineral', 3, 0, 0, 12);
 
--- Medidas Bebidas y Gaseosas
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (21, '2 litros', 2, 'litros'), (21, '1 litro', 1, 'litros'), (21, '1/2 litro', 0.5, 'litros'),
     (22, '1 litro', 1, 'litros'), (22, '1/2 litro', 0.5, 'litros'),
@@ -140,21 +138,18 @@ INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBas
     (26, '2 litros', 2, 'litros'), (26, '1 litro', 1, 'litros'), (26, '1/2 litro', 0.5, 'litros'),
     (27, '1 litro', 1, 'litros'), (27, '1/2 litro', 0.5, 'litros');
 
--- ==========================================
--- INFUSIONES Y REFRESCOS (UnidadBase: kg)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Café', 4, 0, 'kg', 0, 1),
-    ('Manzanilla', 4, 0, 'kg', 0, 1),
-    ('Anís', 4, 0, 'kg', 0, 1),
-    ('Té', 4, 0, 'kg', 0, 1),
-    ('Maíz morado', 4, 0, 'kg', 0, 2),
-    ('Cebada', 4, 0, 'kg', 0, 1),
-    ('Maracuyá', 4, 0, 'kg', 0, 1),
-    ('Limón', 4, 0, 'kg', 0, 1),
-    ('Hierbaluisa', 4, 0, 'kg', 0, 1);
+-- INFUSIONES Y REFRESCOS
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Café', 4, 0, 0, 1),
+    ('Manzanilla', 4, 0, 0, 1),
+    ('Anís', 4, 0, 0, 1),
+    ('Té', 4, 0, 0, 1),
+    ('Maíz morado', 4, 0, 0, 2),
+    ('Cebada', 4, 0, 0, 1),
+    ('Maracuyá', 4, 0, 0, 1),
+    ('Limón para infusión', 4, 0, 0, 1),
+    ('Hierbaluisa', 4, 0, 0, 1);
 
--- Medidas Infusiones y Refrescos
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (28, '1 Kg', 1, 'kg'), (28, '1/2 Kg', 0.5, 'kg'),
     (29, '1 Kg', 1, 'kg'), (29, '1/2 Kg', 0.5, 'kg'),
@@ -166,20 +161,17 @@ INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBas
     (35, '1 Kg', 1, 'kg'), (35, '1/2 Kg', 0.5, 'kg'),
     (36, '1 Kg', 1, 'kg'), (36, '1/2 Kg', 0.5, 'kg');
 
--- ==========================================
--- LIMPIEZA (UnidadBase: litros o unidades)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Detergente', 5, 0, 'litros', 0, 2),
-    ('Lejía', 5, 0, 'litros', 0, 2),
-    ('Jabón líquido', 5, 0, 'litros', 0, 2),
-    ('Desinfectante', 5, 0, 'litros', 0, 2),
-    ('Esponjas', 5, 0, 'unidades', 0, 10),
-    ('Guantes', 5, 0, 'unidades', 0, 10),
-    ('Bolsas de basura', 5, 0, 'unidades', 0, 20),
-    ('Papel toalla', 5, 0, 'unidades', 0, 6);
+-- LIMPIEZA
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Detergente', 5, 0, 0, 2),
+    ('Lejía', 5, 0, 0, 2),
+    ('Jabón líquido', 5, 0, 0, 2),
+    ('Desinfectante', 5, 0, 0, 2),
+    ('Esponjas', 5, 0, 0, 10),
+    ('Guantes', 5, 0, 0, 10),
+    ('Bolsas de basura', 5, 0, 0, 20),
+    ('Papel toalla', 5, 0, 0, 6);
 
--- Medidas Limpieza
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (37, '1 litro', 1, 'litros'), (37, '1/2 litro', 0.5, 'litros'),
     (38, '1 litro', 1, 'litros'), (38, '1/2 litro', 0.5, 'litros'),
@@ -190,18 +182,15 @@ INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBas
     (43, '50 unidades', 50, 'unidades'), (43, '20 unidades', 20, 'unidades'),
     (44, '6 unidades', 6, 'unidades'), (44, '12 unidades', 12, 'unidades');
 
--- ==========================================
--- DESECHABLES (UnidadBase: unidades)
--- ==========================================
-INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, UnidadBase, PrecioUnitario, StockMinimo) VALUES
-    ('Vasos descartables', 6, 0, 'unidades', 0, 50),
-    ('Tapers', 6, 0, 'unidades', 0, 25),
-    ('Bolsas', 6, 0, 'unidades', 0, 50),
-    ('Servilletas', 6, 0, 'unidades', 0, 50),
-    ('Cucharas descartables', 6, 0, 'unidades', 0, 50),
-    ('Tenedores descartables', 6, 0, 'unidades', 0, 50);
+-- DESECHABLES
+INSERT INTO ProductosAlmacen (Nombre, IdCategoriaAlmacen, Cantidad, PrecioUnitario, StockMinimo) VALUES
+    ('Vasos descartables', 6, 0, 0, 50),
+    ('Tapers', 6, 0, 0, 25),
+    ('Bolsas', 6, 0, 0, 50),
+    ('Servilletas', 6, 0, 0, 50),
+    ('Cucharas descartables', 6, 0, 0, 50),
+    ('Tenedores descartables', 6, 0, 0, 50);
 
--- Medidas Desechables
 INSERT INTO MedidasProducto (IdProductoAlmacen, Nombre, ValorNumerico, UnidadBase) VALUES
     (45, '100 unidades', 100, 'unidades'), (45, '50 unidades', 50, 'unidades'),
     (46, '50 unidades', 50, 'unidades'), (46, '25 unidades', 25, 'unidades'),
